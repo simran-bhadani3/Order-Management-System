@@ -2,7 +2,6 @@ package seedu.cakecollate.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.cakecollate.commons.core.index.Index.fromZeroBased;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.cakecollate.logic.commands.CommandTestUtil.showOrderAtIndex;
@@ -47,7 +46,7 @@ public class DeleteCommandTest {
         convertedToString = convertedToString + String.format("\n%1$s", orderToDeleteOne);
 
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ORDERS_SUCCESS,convertedToString);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_ORDERS_SUCCESS, convertedToString);
 
         ModelManager expectedModel = new ModelManager(model.getCakeCollate(), new UserPrefs());
         expectedModel.deleteOrder(orderToDeleteTwo);
