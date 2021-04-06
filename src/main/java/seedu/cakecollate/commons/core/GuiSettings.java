@@ -1,6 +1,6 @@
 package seedu.cakecollate.commons.core;
 
-import java.awt.Point;
+import java.awt.*;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -10,8 +10,13 @@ import java.util.Objects;
  */
 public class GuiSettings implements Serializable {
 
-    private static final double DEFAULT_HEIGHT = 600;
-    private static final double DEFAULT_WIDTH = 740;
+//    private static final double DEFAULT_HEIGHT = 600;
+//    private static final double DEFAULT_WIDTH = 740;
+
+    private static final Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+//    private static final double DEFAULT_HEIGHT = 600;
+//    private static final double DEFAULT_WIDTH = 740;
 
     private final double windowWidth;
     private final double windowHeight;
@@ -21,8 +26,9 @@ public class GuiSettings implements Serializable {
      * Constructs a {@code GuiSettings} with the default height, width and position.
      */
     public GuiSettings() {
-        windowWidth = DEFAULT_WIDTH;
-        windowHeight = DEFAULT_HEIGHT;
+        //subtract 50px to account for task bar
+        windowWidth = screenSize.getWidth() - 50;
+        windowHeight = screenSize.getHeight() - 50;
         windowCoordinates = null; // null represent no coordinates
     }
 
