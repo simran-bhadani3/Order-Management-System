@@ -7,6 +7,8 @@ title: Developer Guide
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **1. Setting up, getting started**
 
 First, you will need to set up the project file in your local computer.<br>
@@ -27,6 +29,8 @@ It is optimized for use via a Command Line Interface (CLI) while still having th
 
 --------------------------------------------------------------------------------------------------------------------
 
+<div style="page-break-after: always;"></div>
+
 ## **3. Design**
 
 ### Architecture
@@ -37,7 +41,7 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S2-CS2103T-T11-4/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
@@ -54,6 +58,8 @@ The rest of the App consists of four components.
 * [**`Model`**](#model-component): Holds the data of the App in memory.
 * [**`Storage`**](#storage-component): Reads data from, and writes data to, the hard disk.
 
+<div style="page-break-after: always;"></div>
+
 Each of the four components,
 
 * defines its *API* in an `interface` with the same name as the Component.
@@ -63,6 +69,8 @@ For example, the `Logic` component (see the class diagram given below) defines i
 
 ![Class Diagram of the Logic Component](images/LogicClassDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
@@ -70,6 +78,8 @@ The *Sequence Diagram* below shows how the components interact with each other f
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
 The sections below give more details of each component.
+
+<div style="page-break-after: always;"></div>
 
 ### UI component
 
@@ -89,6 +99,8 @@ The `UI` component,
 * Executes user commands using the `Logic` component.
 * Listens for changes to `Model` data so that the UI can be updated with the modified data.
 
+<div style="page-break-after: always;"></div>
+
 ### Logic component
 
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
@@ -102,12 +114,16 @@ The `UI` component,
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
 1. In addition, the `CommandResult` object can also instruct the `Ui` to perform certain actions, such as displaying help to the user.
 
+<div style="page-break-after: always;"></div>
+
 Given below is the Sequence Diagram for interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+<div style="page-break-after: always;"></div>
 
 ### Model component
 
@@ -118,17 +134,19 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 The `Model`:
 
 * stores a `UserPref` object that represents the user’s preferences.
-* stores cakecollate's data.
+* stores CakeCollate's data.
 * stores the order item data.
 * exposes an unmodifiable `ObservableList<Order>` and `ObservableList<OrderItem>`that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.
 * does not depend on any of the other three components.
 
+<div style="page-break-after: always;"></div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `CakeCollate`, which `Order` references. This allows `CakeCollate` to only require one `Tag` object per unique `Tag`, instead of each `Order` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
 
+<div style="page-break-after: always;"></div>
 
 ### Storage component
 
@@ -137,15 +155,18 @@ The `Model`:
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
 The `Storage` component,
-* `UserPrefsStorage` can save `UserPref` objects in json format and read it back.
-* `CakeCollateStorage` can save cakecollate's data in json format and read it back.
-* `OrderItemsStorage` can save order items data in json format and read it back.
+* `UserPrefsStorage` can save `UserPref` objects in JSON format and read it back.
+* `CakeCollateStorage` can save CakeCollate's data in JSON format and read it back.
+* `OrderItemsStorage` can save order items data in JSON format and read it back.
 
 ### Common classes
 
 Classes used by multiple components are in the `seedu.cakecollate.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
+
 
 ## **4. Implementation**
 
@@ -182,10 +203,13 @@ Hence, based on this implementation, here is the sequence diagram containing the
 
 ![AddParserSequenceDiagram](images/AddParserSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
+
 **Sequence diagram depicting the `AddCommand::execute` method:**
 
 ![AddSequenceDiagram](images/AddSequenceDiagram.png)
 
+<div style="page-break-after: always;"></div>
 
 ### Find feature
 
@@ -216,6 +240,8 @@ Given below is an example usage scenario and how the find mechanism behaves at e
 
 *Step 4.* The `FindCommand#execute` is called which updates the `FilteredList` that is currently being displayed.
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how this works:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The CakeCollateParser creates FindCommandParser and calls parse("n/Alex") while the LogicManager calls execute(). You can refer to the [Logic Component](#logic-component) for more details.
@@ -227,6 +253,8 @@ The following sequence diagram shows how this works:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifelines should end at the destroy marker (X) but due to a limitation of PlantUML, the lifelines reach the end of diagram.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 #### Design considerations:
 
@@ -249,6 +277,8 @@ As CakeCollate is adapted from the AddressBook-Level3 project, the original find
     * Cons:
       * Creating many classes causes increased coupling.
       * Hard to implement `OR` searches.
+
+<div style="page-break-after: always;"></div>
 
 ### Remind feature
 
@@ -289,6 +319,8 @@ The following sequence diagram shows how this works:
 
 </div>
 
+<div style="page-break-after: always;"></div>
+
 #### Design considerations:
 
 ##### Aspect: How to allow users to receive reminders
@@ -309,6 +341,8 @@ time frame of 1 week that pops out whenever the user opens the application.
       * User has no flexibility to specify the time range he/she wants to receive reminders for.
       * If user want to check for reminders again he has to reopen the application.
     
+<div style="page-break-after: always;"></div>
+
 ### Add Order Item Feature
 The `addItem` command enables users to predefine order items (also known as cake items or order descriptions). The user can choose to add order items directly from this table when adding orders to CakeCollate.
 
@@ -330,6 +364,8 @@ Given below is an example usage scenario and how the `addItem` mechanism works.
 
 *Step 4.* `AddOrderItemCommand#execute` is called which updates the `UniqueOrderItemList` that is currently being displayed.
 
+<div style="page-break-after: always;"></div>
+
 The following sequence diagram shows how this works:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The CakeCollateParser creates AddOrderItemCommandParser and calls parse("Chocolate Cake") while the LogicManager calls execute(). You can refer to the [Logic Component](#logic-component) for more details.
@@ -341,6 +377,8 @@ The following sequence diagram shows how this works:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddOrderItemCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
+
+<div style="page-break-after: always;"></div>
 
 
 #### Design considerations: 
@@ -358,7 +396,73 @@ The following sequence diagram shows how this works:
     * Cons:
       * User might accidentally add a duplicate `OrderItem` with the same value for `Type` but different case.
 
+
+
+<div style="page-break-after: always;"></div>
+
+### Delete Order Item Feature
+The `deleteItem` command enables users to delete predefined order items (also known as cake items or order descriptions). The user can choose to delete a single order item or multiple order items at the same time.
+
+The `deleteItem` command utilises the `IndexList` class to enable the deletion of multiple items at once. The `IndexList` parser takes in a string of multiple indexes separated by spaces, parses them to `Index` and stores them in an `ArrayList<Index>`.
+
+The underlying functionality for the `deleteItem` command utilises the `DeleteOrderItemCommand::execute` method which sorts the provided `Index List` in descending order. All the order items pertaining to the indexes input by the user are removed from the `UniqueOrderItemList` using the `Model::deleteOrderItem` method.
+
+If the user wants to delete order items at index `1` and `2` in the order items table, they can use the command `deleteItem 1 2`.
+
+Given below is an example usage scenario and how the `deleteItem` mechanism works.
+
+*Step 1.* The user keys in and executes the command `deleteItem 1 2` to delete the order items located at index 1 and 2 in the order items table.
+
+*Step 2.* The command is parsed by `DeleteOrderItemCommandParser`.
+
+*Step 3.* The inputs are then checked for their validity. If no exceptions are detected, a `DeleteOrderItemCommand` will be created.
+
+*Step 4.* `DeleteOrderItemCommand#execute` is called which updates the `UniqueOrderItemList` that is currently being displayed.
+
+<div style="page-break-after: always;"></div>
+
+The following sequence diagram shows how the `DeleteOrderItemCommandParser` works:
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The CakeCollateParser creates DeleteOrderItemCommandParser and calls parse("1 2"). 
+
+</div>
+
+![DeleteOrderItemParserSequenceDiagram](images/DeleteOrderItemParserSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteOrderItemCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+<div style="page-break-after: always;"></div>
+
+The following sequence diagram shows how the `DeleteOrderItemCommand` works:
+
+![DeleteOrderItemSequenceDiagram](images/DeleteOrderItemSequenceDiagram.png)
+
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The LogicManager calls execute(). You can refer to the [Logic Component](#logic-component) for more details.
+
+</div>
+
+<div style="page-break-after: always;"></div>
+
+#### Design considerations:
+
+##### Aspect: Parsing multiple indexes
+* **Alternative 1 (current choice):** Create an IndexList class which can be used to store and parse multiple Indexes.
+    * Pros:
+        * Other commands which accept multiple indexes can also use methods from the IndexList class.
+    * Cons:
+        * Different commands have different requirements for index lists. For e.g. `DeleteOrderItemCommand` and `DeleteCommand` require that there should be no duplicate `Indexes` in the `IndexList` after parsing. However, the `AddOrderCommand` requires duplicate `Indexes` to also be stored. Each command has to implement additional checks when using `IndexList` due to differing requirements.
+* **Alternative 2:** Simply use an `ArrayList` of `Index` without creating a new class.
+    * Pros:
+        * Each command can have its own implementation of `ArrayList` which suits its needs.
+    * Cons:
+        * Not extensible to other commands as they will have to implement their own `List` if they want to accept multiple indexes.
+
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **4. Documentation, logging, testing, configuration, dev-ops**
 
@@ -387,6 +491,8 @@ The following sequence diagram shows how this works:
 **Value proposition**: keep track of and manage all orders placed on various online selling platforms in one place
 
 
+<div style="page-break-after: always;"></div>
+
 ### User stories
 
 Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikely to have) - `*`
@@ -414,6 +520,8 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 | `*`     | User                                         | set prices and costs of orders                                     | I can note how much profit I am earning                                                      |
 | `*`     | User                                         | save a particular customer's information                           | I can quickly add another order from this customer next time                                 |
 | `*`     | Regular user                                 | keep track of the money paid or owed by the customer               | I can ensure that all my dues have been received                                             |
+
+<div style="page-break-after: always;"></div>
 
 ### Use cases
 
@@ -506,8 +614,8 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 1.  User requests to list orders
 2.  CakeCollate shows a list of orders
-3.  User requests to set a specific order, or a list of orders in the above list as undelivered/delivered/cancelled.
-4.  CakeCollate updates the order and sets the delivery status to undelivered/delivered/cancelled.
+3.  User requests to set a specific order, or a list of orders in the above list as undelivered/delivered/cancelled
+4.  CakeCollate updates the order and sets the delivery status to undelivered/delivered/cancelled
 
     Use case ends.
 
@@ -533,8 +641,8 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 **MSS**
 
-1.  User requests to add an order item to the order items table.
-2.  CakeCollate adds the item and displays it in the Order Items table on the right of the GUI.
+1.  User requests to add an order item to the order items table
+2.  CakeCollate adds the item and displays it in the Order Items table on the right of the GUI
 
     Use case ends.
 
@@ -550,8 +658,8 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 **MSS**
 
-1.  User requests to delete a specific list of order items.
-2.  CakeCollate deletes the specified order items.
+1.  User requests to delete a specific list of order items
+2.  CakeCollate deletes the specified order items
 
     Use case ends.
 
@@ -579,8 +687,8 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 **MSS**
 
-1.  User requests for help.
-2.  CakeCollate shows a list of commands, their formats, descriptions, and examples.
+1.  User requests for help
+2.  CakeCollate shows a list of commands, their formats, descriptions, and examples
 
     Use case ends.
 
@@ -609,6 +717,8 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
     Use case ends.
 
+
+<div style="page-break-after: always;"></div>
 
 ### Non-Functional Requirements
 
@@ -641,6 +751,8 @@ Priorities: High (must have) - `***`, Medium (nice to have) - `**`, Low (unlikel
 
 
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **7. Appendix: Instructions for manual testing**
 
@@ -785,7 +897,31 @@ Prerequisites: Use the sample data provided on first start up. You can delete th
        Expected: No changes made to any order. Invalid command format error is shown in the status message.
     1. Test case:`cancelled x` (where x is larger than the list size)<br>
        Expected: No changes made to any order. Invalid index is shown in the status message.
+ 
+### Adding order items
+
+1. Adding an order item to the order items table
+    1. Prerequisites: none.
+    1. Test case: `addItem Chocolate Cake`<br>
+       Expected: A new Order Item with description "Chocolate Cake" is added to the order items table.
+    1. Test case: `addItem 123`<br>
+       Expected:  No order item is added. Error details shown in the status message.
        
+### Deleting multiple order items
+
+1. Deleting multiple order items from the order items table.
+    1. Prerequisites: Multiple order items in the order items table.
+    1. Test case: `delete 1`<br>
+       Expected: First order item is deleted from the order items table. Details of the deleted order item shown in the status message.
+    1. Test case: `delete 1 2` <br>
+       Expected: First and second order items are deleted from the order items table. Details of the deleted order items are shown in the status message.
+    1. Test case: `delete 0 1`<br>
+       Expected: No order item is deleted. Error details shown in the status message.
+    1. Test case: `delete 0 1`<br>
+       Expected: No order item is deleted. Error details shown in the status message.
+    1. Other incorrect deleteItem commands to try: `deleteItem`, `deleteItem x` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
+      
 ### Saving data
 
 1. Dealing with missing/corrupted data files
@@ -797,6 +933,8 @@ Prerequisites: Use the sample data provided on first start up. You can delete th
     I.e. all the previously stored data is lost.
     
 --------------------------------------------------------------------------------------------------------------------
+
+<div style="page-break-after: always;"></div>
 
 ## **8. Effort**
 
