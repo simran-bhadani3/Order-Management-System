@@ -226,7 +226,7 @@ Prefix: `t/`
 
 1. Ensure you have Java `11` or above installed on your computer.
 
-2. Download the latest `cakecollate.jar` from [here](https://github.com/AY2021S2-CS2103T-T11-4/tp/releases).
+2. Download the latest `cakecollate.jar` from [here](https://github.com/simran-bhadani3/Order-Management-System/releases/tag/v1.0).
 
 3. Copy the file to the folder you want to use as the _home folder_ for CakeCollate.
 
